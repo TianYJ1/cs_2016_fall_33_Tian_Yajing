@@ -1,41 +1,22 @@
-#include <stdlib.h> 
-#include <stdio.h>
+#include<stdio.h>
 
-double asd(double *m, int n)
-{    int i,d;
-	double p;
-	double o;
-	p=m[1];
-	for (i = 0; i< n; ++i)
-	{
-	  if (p<m[i]){
-			p=m[i];
-	  }
-	}
-	o=m[0];
- 	for (i = 0; i< n; ++i)
-	{
-	  if (o>m[i]){
-			o=m[i];
-	  }
-	} 
-	d=p-o;
-	return d;
-}
+#include<string.h>
+main()
 
-int main()
-{   double q;
-	int n;
-	int i=0;
-	
-	printf("how many:");
-	scanf("%i", &n);
-	double *m = (double*)malloc(n*10);
-	printf("numbers: ");
-	for (i = 0; i < n; ++i){
-	scanf("%lf", &m[i]);
-	}
-	q=asd(m, n);
-	printf("diversity=%lf\n", q);
-	return 0;
+{int i,a[127]={0};
+
+ char s[100];
+
+ printf("Enter a string:\n");
+
+ gets(s);
+
+ for(i=0;i<strlen(s);i++)
+
+   if(a[(int)s[i]]==0)
+
+   {a[(int)s[i]]=1; printf("%c",s[i]);}
+
+ printf("\n");
+
 }
