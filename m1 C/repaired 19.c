@@ -22,9 +22,9 @@ int main(int argc, const char * argv[]) {
     }  
 }  
   
-/*×´Ì¬»úº¯Êı*/  
+
 void change_state(int c){  
-    if (state==0) {//ÆÕÍ¨×´Ì¬  
+    if (state==0) {  
         if (c=='/') {  
             state = 1;  
         }else if (c=='"'){  
@@ -38,7 +38,7 @@ void change_state(int c){
             state = 0;  
             putchar(c);  
         }  
-    }else if (state==1) {//¼ì²âµ½1¸ö'/'  
+    }else if (state==1) {
         if (c=='/') {  
             state = 2;  
         }else if (c=='*'){  
@@ -48,14 +48,14 @@ void change_state(int c){
             putchar(c1);  
             putchar(c);  
         }  
-    }else if (state==2) {// "//"×¢ÊÍ×´Ì¬  
+    }else if (state==2) {
         if (c=='\n') {  
             state = 0;  
             putchar(c);  
         }else{  
             state = 2;  
         }  
-    }else if (state==3) {// "/*"×¢ÊÍ×´Ì¬  
+    }else if (state==3) {
         if (c=='*') {  
             state = 4;  
         }else{  
@@ -67,7 +67,7 @@ void change_state(int c){
         }else{  
             state = 3;  
         }  
-    }else if (state==5){//ÔÚ"×Ö·û´®Àï  
+    }else if (state==5){ 
         if (c=='"') {  
             state = 0;  
             putchar(c);  
@@ -78,7 +78,7 @@ void change_state(int c){
             state = 5;  
             putchar(c);  
         }  
-    }else if (state==6){//ÔÚ'×Ö·ûÀï  
+    }else if (state==6){
         if (c=='\'') {  
             state = 0;  
             putchar(c);  
@@ -89,10 +89,10 @@ void change_state(int c){
             state = 6;  
             putchar(c);  
         }  
-    }else if (state==7){//ÔÚ"×Ö·û´®ÀïµÄ"\"  
+    }else if (state==7){
         state = 5;  
         putchar(c);  
-    }else if (state==8){//ÔÚ'×Ö·û´®ÀïµÄ"\"  
+    }else if (state==8){
         state = 6;  
         putchar(c);  
     }  
