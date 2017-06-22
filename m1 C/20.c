@@ -1,68 +1,47 @@
-#include<iostream>
-#include<string>
-#include<fstream> 
+#include <iostream>
+#include <string>
+#include <fstream>
 using namespace std;
-int main()
-{
+
+Encrypt (string key,string fname, string oname){
+ifstream fin;
 char c;
-ifstream source;
-ofstream target;
-string source_fname;
-string target_fname;
- 
-cout<<"Please enter the path of the file to be encrypted/decrypted: "<<endl;
-cin>>source_fname;
-source.open(source_fname.c_str());
-cout<<endl;
-cout<<"Please enter the path and name of the new file, that the first file is to";
-cout<<"be encrypted/decrypted to: "<<endl;
-cin>>target_fname;
-target.open(target_fname.c_str());
- 
- 
+int keyi;
+    for (int i=0;i < key.size();i++)
+        keyi*=key[i];
+string kname=oname;
+oname.append(".cxpt");
+kname.append(".ckey");
+ofstream fo, keyo(kname.c_str());
+fin.open(fname.c_str());
+fo.open(oname.c_str());
 
-string code;
-cout<<"\n\nPlease input a code/password of not greater than 32 characters (including no spaces/blanks),";
-cout<<"[Note: if a space is entered the program will consider the code/password to be only what before the";
-cout<<"space/blank]: "<<endl;
-cin>>code;
- 
-int codeNO; // number of characters of the code
-codeNO = code.length();
- 
-while(codeNO>32)
-{
-cout<<"The code entered is greater than 32 characters, please reenter a new code: ";
-getline(cin,code);
-codeNO = code.length();
-}
-char code_array[32];
-for(int m=0; m<codeNO; m++)
-{
-code_array[m] = code[m];
-}
-// END CODE INPUT INTO AN ARRAY ==================================
- 
-while(!source.eof())
-{
- 
-
-char file_array[32];
- 
-for(int j=0; j<codeNO; j++)
-{
-source.get(c);
-file_array[j] = c;
+while(fin >> std::noskipws >> c)
+    {
+    c=c^keyi;
+    fo<<c;
+        }
+            keyo<<keyi<<endl<<oname<<endl<<fname<<endl<<key;
 }
 
-char enc_dec_array[32];
-for(int k=0; k<codeNO; k++)
-{
-enc_dec_array[k] = file_array[k] ^ code_array[k];
-target.put(enc_dec_array[k]);
-}
 
-}
- 
+int main(){
+string in,key,fname,oname;
+//initializes more variables
+cout<<"What is the file name?"<<endl;
+getline(cin,fname);
+cout<<"What will the output file be?"<<endl;
+getline(cin,oname);
+check:
+cout<<"Enter an encryption key."<<endl;
+getline(cin,key);
+if (key=="1") {cout<<"Invalid key, enter a different one"<<endl; goto check;}
+// inputting one doesn't decrypt properly
+Encrypt (key,fname,oname);
+cout<<"The file has been encrypted/decrypted."<<endl;
+string wait;
+getline(cin,wait);
+//input to pause before closing program
 return 0;
 }
+
