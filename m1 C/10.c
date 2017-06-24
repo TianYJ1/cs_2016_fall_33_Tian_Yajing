@@ -11,7 +11,7 @@ int main()
     
     printf("Enter the number:\nx: ");
     scanf("%d", &x);
-    bin(x);//преобразуем в двоичный вид
+    bin(x);
     printf("n: ");
     scanf("%d", &n);
     printf("\n%d\n", rightrot(x, n));
