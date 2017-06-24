@@ -1,21 +1,20 @@
 #include <stdio.h>
-#include "viewbin.h"
 
-unsigned rightrot(unsigned x, int n);
-int countbits(unsigned x);
+int rightrot(int x, int n)
+{
+	int i, j;
+	i = x >> n;
+	j = x << (sizeof(x) * 8 - n);
 
+	return i | j;
+}
 int main()
 {
-    unsigned int x;
-    int n;
-    
-    printf("Enter the number:\nx: ");
-    scanf("%d", &x);
-    bin(x);
-    printf("n: ");
-    scanf("%d", &n);
-    printf("\n%d\n", rightrot(x, n));
-    bin(rightrot(x, n));
-    return 0;
+	int x, n;
+	printf("Enter the number x:");
+	scanf("%i", &x);
+	printf("Enter the number n:");
+	scanf("%i", &n);
+	printf("%i\n", rightrot(x, n));
+	return 0;
 }
-
