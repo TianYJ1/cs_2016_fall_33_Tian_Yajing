@@ -1,36 +1,21 @@
-#include<stdio.h>
+#include <stdio.h>
+#include "viewbin.h"
 
-unsigned rightrot(unsigned x,int n);
+unsigned rightrot(unsigned x, int n);
+int countbits(unsigned x);
 
-int main(void)
+int main()
 {
-    printf("%u",(unsigned)rightrot((unsigned)8,(int)1));
-
+    unsigned int x;
+    int n;
+    
+    printf("Enter the number:\nx: ");
+    scanf("%d", &x);
+    bin(x);//преобразуем в двоичный вид
+    printf("n: ");
+    scanf("%d", &n);
+    printf("\n%d\n", rightrot(x, n));
+    bin(rightrot(x, n));
     return 0;
 }
 
-/* rightrot: rotate x to right by n bit positions */
-
-unsigned rightrot(unsigned x,int n)
-{
-    int wordlength(void);
-    unsigned rbit;/* rightmost bit */
-    
-    rbit = x << (wordlength() - n);
-    x = x >> n;
-    x = x | rbit;
-    
-    return x;
-}
-
-int wordlength(void)
-{
-    int i;
-    unsigned v = (unsigned) ~0;
-
-    for(i=1;(v=v>>1)>0;i++)
-        ;
-    return i;
-}
-
-    
